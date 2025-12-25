@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+	
+	body {
+		@apply bg-bg text-text antialiased;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+	}
+	
+	/* Focus styles for accessibility */
+	*:focus-visible {
+		@apply outline-2 outline-offset-2 outline-white;
+	}
+	
+	/* Skip to content link */
+	.skip-to-content {
+		@apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-bg focus:rounded-md focus:font-medium;
+	}
+}
+
+@layer components {
+	.container-custom {
+		@apply max-w-4xl mx-auto px-6 md:px-8;
+	}
+	
+	.link {
+		@apply text-text hover:text-white transition-colors duration-200 underline-offset-4 hover:underline;
+	}
+	
+	.btn {
+		@apply px-4 py-2 rounded-md transition-colors duration-200;
+	}
+	
+	/* Page transitions */
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	
+	.page-transition {
+		animation: fadeIn 0.3s ease-out;
+	}
+}
+
+/* Screen reader only */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+.focus\:not-sr-only:focus {
+	position: static;
+	width: auto;
+	height: auto;
+	padding: inherit;
+	margin: inherit;
+	overflow: visible;
+	clip: auto;
+	white-space: normal;
+}
+
