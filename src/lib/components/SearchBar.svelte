@@ -1,13 +1,25 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	
 	export let searchQuery: string = '';
 	
 	let inputValue = searchQuery;
+	let isInitialized = false;
+	
+	// Sync inputValue with searchQuery on mount
+	onMount(() => {
+		inputValue = searchQuery;
+		isInitialized = true;
+	});
 	
 	// Update searchQuery when inputValue changes (one-way: input -> searchQuery)
+	// Only update after component is initialized to avoid initial sync issues
 	$: {
-		const lowercased = inputValue.toLowerCase();
-		if (lowercased !== searchQuery) {
-			searchQuery = lowercased;
+		if (isInitialized && inputValue !== undefined) {
+			const lowercased = inputValue.toLowerCase();
+			if (lowercased !== searchQuery) {
+				searchQuery = lowercased;
+			}
 		}
 	}
 	

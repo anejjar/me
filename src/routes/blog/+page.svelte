@@ -6,7 +6,7 @@
 	import type { BlogPost } from '$lib/types';
 	
 	export let data: PageData;
-	const allPosts = data.posts;
+	$: allPosts = data.posts || [];
 	
 	let selectedTag: string | null = null;
 	let searchQuery = '';

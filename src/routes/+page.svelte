@@ -1,5 +1,6 @@
 <script lang="ts">
 	import BlogPostCard from '$lib/components/BlogPostCard.svelte';
+	import PortfolioItem from '$lib/components/PortfolioItem.svelte';
 	import StructuredData from '$lib/components/StructuredData.svelte';
 	import type { PageData } from './$types';
 	
@@ -16,6 +17,27 @@
 			'Docker', 'Postman', 'JWT', 'NPM', 'Netlify'
 		]
 	};
+	
+	const projects = [
+		{
+			title: 'AI Tales',
+			description: 'An AI-powered platform that creates personalized bedtime stories for children, turning bedtime into magical moments where your child is the hero of their own story.',
+			url: 'https://ai-tales.com/',
+			technologies: ['AI', 'Web Development', 'User Experience']
+		},
+		{
+			title: 'This Day Wiki',
+			description: 'A comprehensive knowledge platform that provides historical information and events that happened on any given day throughout history.',
+			url: 'https://www.thisdaywiki.com/',
+			technologies: ['Web Development', 'Content Management', 'Data Visualization']
+		},
+		{
+			title: 'Organicaf',
+			description: 'An e-commerce platform for organic coffee and spices from Morocco, featuring a complete online store with product catalog, shopping cart, and order management.',
+			url: 'https://organicaf.ma/',
+			technologies: ['E-commerce', 'WordPress', 'Payment Integration']
+		}
+	];
 </script>
 
 <svelte:head>
@@ -85,6 +107,16 @@
 					{/each}
 				</div>
 			</div>
+		</div>
+	</section>
+
+	<!-- Portfolio Section -->
+	<section class="mb-16">
+		<h2 class="text-2xl font-semibold mb-6">Featured Projects 🚀</h2>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			{#each projects as project}
+				<PortfolioItem {project} />
+			{/each}
 		</div>
 	</section>
 
