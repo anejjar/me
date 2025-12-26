@@ -29,6 +29,8 @@ RUN npm ci --only=production && npm cache clean --force
 # Copy built application from builder
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/static ./static
+# Copy content directory for blog posts
+COPY --from=builder /app/src/lib/content ./src/lib/content
 
 # Expose port (Dokploy will handle port mapping)
 EXPOSE 3000

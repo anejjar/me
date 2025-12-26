@@ -31,6 +31,43 @@ renderer.code = function (code, language) {
 // Configure marked options once
 marked.setOptions({ renderer });
 
+// Helper function to find blog directory in both dev and production
+async function getBlogDirectory(): Promise<string | null> {
+	const { existsSync } = await import('fs');
+	const { join } = await import('path');
+	const { fileURLToPath } = await import('url');
+	
+	// Get directory from import.meta.url for ES modules
+	let baseDir = process.cwd();
+	try {
+		// Try to get the directory of the current file
+		const currentFile = fileURLToPath(import.meta.url);
+		const { dirname } = await import('path');
+		baseDir = dirname(currentFile);
+	} catch {
+		// Fallback to process.cwd()
+		baseDir = process.cwd();
+	}
+	
+	// Try multiple possible locations
+	const possiblePaths = [
+		join(process.cwd(), 'src', 'lib', 'content', 'blog'),
+		join(baseDir, '..', 'content', 'blog'),
+		join(baseDir, '..', '..', '..', 'src', 'lib', 'content', 'blog'),
+		join(process.cwd(), '..', 'src', 'lib', 'content', 'blog')
+	];
+	
+	for (const path of possiblePaths) {
+		if (existsSync(path)) {
+			console.log('Found blog directory at:', path);
+			return path;
+		}
+	}
+	
+	console.error('Blog directory not found. Tried paths:', possiblePaths);
+	return null;
+}
+
 export async function getBlogPosts(): Promise<BlogPost[]> {
 	try {
 		const posts: BlogPost[] = [];
@@ -42,7 +79,12 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 			const { readdirSync, readFileSync } = await import('fs');
 			const { join } = await import('path');
 			
-			const blogDir = join(process.cwd(), 'src', 'lib', 'content', 'blog');
+			const blogDir = await getBlogDirectory();
+			if (!blogDir) {
+				console.error('Blog directory not found. Tried multiple locations.');
+				return [];
+			}
+			
 			const files = readdirSync(blogDir).filter(f => f.endsWith('.md'));
 			
 			console.log('Reading from filesystem, found files:', files.length);
@@ -166,7 +208,12 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
 			const { readFileSync } = await import('fs');
 			const { join } = await import('path');
 			
-			const blogDir = join(process.cwd(), 'src', 'lib', 'content', 'blog');
+			const blogDir = await getBlogDirectory();
+			if (!blogDir) {
+				console.error('Blog directory not found. Tried multiple locations.');
+				return null;
+			}
+			
 			const filePath = join(blogDir, `${slug}.md`);
 			
 			try {
