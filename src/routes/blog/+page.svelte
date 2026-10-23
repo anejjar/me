@@ -52,8 +52,12 @@
 	<link rel="canonical" href="https://anejjar.com/blog" />
 </svelte:head>
 
-<div class="container-custom py-12 md:py-16">
-	<h1 class="text-4xl md:text-5xl font-bold mb-8">Blog</h1>
+<div class="container-custom py-16 md:py-24">
+	<header class="max-w-3xl mb-12">
+		<span class="eyebrow">Blog</span>
+		<h1 class="text-4xl md:text-6xl font-bold mb-4">Notes &amp; case studies</h1>
+		<p class="text-lg text-text-50">Write-ups on projects I've built, tools I use and lessons learned shipping for the web.</p>
+	</header>
 	
 	{#if allPosts.length === 0}
 		<div class="text-center py-12">

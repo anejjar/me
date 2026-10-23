@@ -1,4 +1,5 @@
 import { getBlogPosts } from '$lib/utils/blog';
+import { tools } from '$lib/config';
 
 export async function GET() {
 	const posts = await getBlogPosts();
@@ -8,7 +9,9 @@ export async function GET() {
 		{ url: '', changefreq: 'weekly', priority: '1.0' },
 		{ url: '/about', changefreq: 'monthly', priority: '0.8' },
 		{ url: '/blog', changefreq: 'weekly', priority: '0.9' },
-		{ url: '/contact', changefreq: 'monthly', priority: '0.7' }
+		{ url: '/contact', changefreq: 'monthly', priority: '0.7' },
+		{ url: '/tools', changefreq: 'monthly', priority: '0.9' },
+		...tools.map((tool) => ({ url: `/tools/${tool.slug}`, changefreq: 'monthly', priority: '0.8' }))
 	];
 	
 	const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

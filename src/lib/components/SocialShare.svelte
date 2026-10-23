@@ -27,7 +27,7 @@
 	}
 </script>
 
-<div class="flex items-center gap-4 pt-6 border-t border-bg-50">
+<div class="flex items-center gap-4 mt-12 pt-6 border-t border-bg-100">
 	<span class="text-sm text-text-50">Share:</span>
 	<div class="flex items-center gap-3">
 		<button

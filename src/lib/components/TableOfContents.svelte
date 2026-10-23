@@ -64,7 +64,7 @@
 </script>
 
 {#if headings.length > 0}
-	<aside class="mb-8 p-6 bg-bg-50 rounded-lg">
+	<aside class="card mb-10 p-6">
 		<h3 class="text-lg font-semibold mb-4">Table of Contents</h3>
 		<nav aria-label="Table of contents">
 			<ul class="space-y-2">
@@ -73,7 +73,7 @@
 						<a
 							href="#{heading.id}"
 							on:click|preventDefault={() => scrollToHeading(heading.id)}
-							class="block text-sm text-text-50 hover:text-white transition-colors {activeId === heading.id ? 'text-white font-medium' : ''}"
+							class="block text-sm text-text-50 hover:text-white transition-colors {activeId === heading.id ? '!text-accent font-medium' : ''}"
 							style="padding-left: {(heading.level - 1) * 1}rem"
 						>
 							{heading.text}

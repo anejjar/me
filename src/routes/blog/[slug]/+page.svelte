@@ -4,6 +4,7 @@
 	import SocialShare from '$lib/components/SocialShare.svelte';
 	import RelatedPosts from '$lib/components/RelatedPosts.svelte';
 	import TableOfContents from '$lib/components/TableOfContents.svelte';
+	import CtaBanner from '$lib/components/CtaBanner.svelte';
 	
 	export let data: PageData;
 	const post: BlogPost = data.post;
@@ -31,13 +32,13 @@
 	<link rel="canonical" href={`https://anejjar.com/blog/${post.slug}`} />
 </svelte:head>
 
-<div class="container-custom py-12 md:py-16">
-	<article class="max-w-3xl">
+<div class="container-custom py-16 md:py-24">
+	<article class="max-w-3xl mx-auto">
 		<header class="mb-8">
-			<a href="/blog" class="text-text-50 hover:text-white transition-colors mb-6 inline-block">
+			<a href="/blog" class="text-sm text-text-50 hover:text-accent transition-colors mb-8 inline-block">
 				← Back to blog
 			</a>
-			<h1 class="text-4xl md:text-5xl font-bold mb-4">{post.title}</h1>
+			<h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">{post.title}</h1>
 			{#if post.date}
 				<time class="text-text-100 text-sm">
 					{formatDate(post.date)}
@@ -53,6 +54,10 @@
 		
 		<SocialShare title={post.title} url={`/blog/${post.slug}`} />
 		
+		<div class="mt-12">
+			<CtaBanner title="Need something like this built?" />
+		</div>
+
 		<RelatedPosts posts={relatedPosts} currentSlug={post.slug} />
 	</article>
 </div>
@@ -70,15 +75,15 @@
 	}
 	
 	:global(.prose a) {
-		@apply text-text hover:text-white transition-colors;
+		@apply text-accent no-underline hover:underline underline-offset-4 transition-colors;
 	}
 	
 	:global(.prose code) {
-		@apply bg-bg-50 px-1.5 py-0.5 rounded text-sm;
+		@apply bg-bg-100 px-1.5 py-0.5 rounded text-sm font-normal before:content-none after:content-none;
 	}
 	
 	:global(.prose pre) {
-		@apply bg-bg-50 rounded-lg p-4 overflow-x-auto;
+		@apply bg-bg-50 border border-bg-100 rounded-xl p-4 overflow-x-auto;
 	}
 	
 	:global(.prose pre code) {

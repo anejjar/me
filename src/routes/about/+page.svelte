@@ -1,107 +1,78 @@
 <script lang="ts">
-	const skills = {
-		languages: ['PHP', 'JavaScript', 'Python', 'Go'],
-		frameworks: ['Laravel', 'React', 'Vue.js', 'WordPress'],
-		tools: [
-			'CSS3', 'HTML5', 'TypeScript', 'TailwindCSS', 'Bootstrap',
-			'Node.js', 'Express.js', 'Next.js', 'Vite', 'Redux',
-			'MySQL', 'PostgreSQL', 'MongoDB', 'SQLite',
-			'Docker', 'Postman', 'JWT', 'NPM', 'Netlify'
-		]
-	};
+	import CtaBanner from '$lib/components/CtaBanner.svelte';
+	import { reveal } from '$lib/actions/reveal';
+	import { services, skills } from '$lib/config';
 </script>
 
 <svelte:head>
 	<title>About - ANEJJAR Elhoucine</title>
-	<meta name="description" content="Learn more about ANEJJAR Elhoucine - Front & Back End developer, UX/UI enthusiast, and open-source contributor." />
+	<meta name="description" content="Learn more about ANEJJAR Elhoucine - freelance full-stack developer, UX/UI enthusiast, and open-source contributor." />
 	<meta property="og:title" content="About - ANEJJAR Elhoucine" />
-	<meta property="og:description" content="Learn more about ANEJJAR Elhoucine - Front & Back End developer, UX/UI enthusiast, and open-source contributor." />
+	<meta property="og:description" content="Learn more about ANEJJAR Elhoucine - freelance full-stack developer, UX/UI enthusiast, and open-source contributor." />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://anejjar.com/about" />
 	<link rel="canonical" href="https://anejjar.com/about" />
 </svelte:head>
 
-<div class="container-custom py-12 md:py-16">
-	<h1 class="text-4xl md:text-5xl font-bold mb-8">About</h1>
-	
-	<div class="max-w-3xl space-y-8">
-		<section>
-			<h2 class="text-2xl font-semibold mb-4">Who I Am</h2>
-			<p class="text-lg text-text leading-relaxed mb-4">
-				Hi 👋, I'm <strong>ANEJJAR Elhoucine</strong>!
+<div class="container-custom py-16 md:py-24">
+	<header class="max-w-3xl mb-16 md:mb-20">
+		<span class="eyebrow">About</span>
+		<h1 class="text-4xl md:text-6xl font-bold mb-6">Developer with a designer's eye.</h1>
+		<p class="text-xl text-text-50 leading-relaxed">
+			I'm ANEJJAR Elhoucine — a front &amp; back end developer with a passion for UX/UI, an open-source lover and a
+			life hacker who loves code, meditation and solving human problems.
+		</p>
+	</header>
+
+	<div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
+		<section class="lg:col-span-2 space-y-6 text-lg text-text leading-relaxed" use:reveal>
+			<h2 class="text-2xl font-semibold">My approach</h2>
+			<p>
+				My journey in development has been driven by curiosity and a desire to create meaningful solutions. I believe in
+				writing clean, maintainable code and building user experiences that truly make a difference.
 			</p>
-			<p class="text-lg text-text leading-relaxed mb-4">
-				I'm a Front & Back End developer with a passion for UX/UI design. I'm an open-source lover 
-				and a life hacker who 💓 code, meditation, and solving human problems.
+			<p>
+				As a freelancer, I work directly with you — no account managers, no hand-offs. I care about the business outcome
+				as much as the code: shipping quickly, communicating clearly, and leaving you with something you can grow.
 			</p>
-			<p class="text-lg text-text leading-relaxed">
-				My journey in development has been driven by curiosity and a desire to create meaningful 
-				solutions. I believe in writing clean, maintainable code and building user experiences 
-				that truly make a difference.
+			<p>
+				I'm always expanding my skill set. Right now I'm diving deeper into <strong class="text-white">Python</strong> and
+				<strong class="text-white">Go</strong>, and building with AI.
 			</p>
 		</section>
 
-		<section>
-			<h2 class="text-2xl font-semibold mb-4">Technical Skills</h2>
-			
-			<div class="space-y-6">
-				<div>
-					<h3 class="text-lg font-medium mb-3">Languages</h3>
-					<div class="flex flex-wrap gap-2">
-						{#each skills.languages as lang}
-							<span class="px-3 py-1 bg-bg-50 rounded-md text-sm">{lang}</span>
-						{/each}
-					</div>
-				</div>
-				
-				<div>
-					<h3 class="text-lg font-medium mb-3">Frameworks & Libraries</h3>
-					<div class="flex flex-wrap gap-2">
-						{#each skills.frameworks as framework}
-							<span class="px-3 py-1 bg-bg-50 rounded-md text-sm">{framework}</span>
-						{/each}
-					</div>
-				</div>
-				
-				<div>
-					<h3 class="text-lg font-medium mb-3">Tools & Technologies</h3>
-					<div class="flex flex-wrap gap-2">
-						{#each skills.tools as tool}
-							<span class="px-3 py-1 bg-bg-50 rounded-md text-sm">{tool}</span>
-						{/each}
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section>
-			<h2 class="text-2xl font-semibold mb-4">Currently Learning</h2>
-			<p class="text-lg text-text leading-relaxed">
-				I'm always expanding my skill set. Currently diving deeper into <strong>Python</strong> and <strong>Go</strong>, 
-				exploring new frameworks, and staying up-to-date with the latest web technologies.
-			</p>
-		</section>
-
-		<section>
-			<h2 class="text-2xl font-semibold mb-4">What I Do</h2>
-			<ul class="list-disc list-inside space-y-2 text-lg text-text">
-				<li>Build full-stack web applications</li>
-				<li>Design and implement user interfaces</li>
-				<li>Contribute to open-source projects</li>
-				<li>Freelance development work</li>
-				<li>Solve complex technical problems</li>
+		<aside class="card p-6 h-fit" use:reveal={100}>
+			<h2 class="text-lg font-semibold mb-4">What I do</h2>
+			<ul class="space-y-3">
+				{#each services as service}
+					<li class="flex items-start gap-2 text-text-50">
+						<span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" aria-hidden="true"></span>
+						{service.title}
+					</li>
+				{/each}
+				<li class="flex items-start gap-2 text-text-50">
+					<span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" aria-hidden="true"></span>
+					Open-source contributions
+				</li>
 			</ul>
-		</section>
-
-		<section>
-			<h2 class="text-2xl font-semibold mb-4">Get in Touch</h2>
-			<p class="text-lg text-text leading-relaxed mb-4">
-				💬 Ready for freelancing: <a href="/contact" class="link">anejjar.com</a>
-			</p>
-			<p class="text-lg text-text leading-relaxed">
-				📫 How to reach me: <a href="mailto:anejjarelhoucine@gmail.com" class="link">anejjarelhoucine@gmail.com</a>
-			</p>
-		</section>
+		</aside>
 	</div>
-</div>
 
+	<section class="mb-20" use:reveal>
+		<h2 class="text-2xl font-semibold mb-8">Technical skills</h2>
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+			{#each Object.entries(skills) as [group, items]}
+				<div>
+					<h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-text-100 mb-3">{group}</h3>
+					<div class="flex flex-wrap gap-2">
+						{#each items as item}
+							<span class="chip">{item}</span>
+						{/each}
+					</div>
+				</div>
+			{/each}
+		</div>
+	</section>
+
+	<CtaBanner title="Let's work together" />
+</div>

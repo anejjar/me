@@ -36,7 +36,7 @@
 			type="text"
 			placeholder="Search posts..."
 			bind:value={inputValue}
-			class="w-full px-4 py-3 pl-10 bg-bg-50 border border-bg-100 rounded-md text-text placeholder-text-100 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+			class="input pl-10 bg-bg-50"
 		/>
 		<svg
 			class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-100"

@@ -12,7 +12,7 @@
 
 <div class="container-custom py-12 md:py-16 min-h-[60vh] flex items-center justify-center">
 	<div class="text-center max-w-2xl">
-		<h1 class="text-6xl md:text-8xl font-bold mb-4 text-white">{status}</h1>
+		<h1 class="text-7xl md:text-9xl font-bold mb-4 text-accent">{status}</h1>
 		<h2 class="text-2xl md:text-3xl font-semibold mb-6">
 			{status === 404 ? 'Page Not Found' : 'Something went wrong'}
 		</h2>
@@ -24,13 +24,13 @@
 		<div class="flex flex-col sm:flex-row gap-4 justify-center">
 			<a
 				href="/"
-				class="btn bg-white text-bg hover:bg-text-50 transition-colors px-6 py-3 rounded-md font-medium"
+				class="btn-primary"
 			>
 				Go Home
 			</a>
 			<button
 				on:click={() => window.history.back()}
-				class="btn border border-bg-50 text-text hover:bg-bg-50 transition-colors px-6 py-3 rounded-md font-medium"
+				class="btn-secondary"
 			>
 				Go Back
 			</button>

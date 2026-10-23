@@ -20,18 +20,18 @@
 
 {#if uniqueTags.length > 0}
 	<div class="mb-8">
-		<h3 class="text-sm font-medium text-text-50 mb-4">Filter by tag:</h3>
+		<h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-text-100 mb-3">Filter by tag</h3>
 		<div class="flex flex-wrap gap-2">
 			<button
 				on:click={selectAll}
-				class="px-3 py-1 rounded-md text-sm transition-colors {selectedTag === null ? 'bg-white text-bg font-medium' : 'bg-bg-50 text-text hover:bg-bg-100'}"
+				class="px-3 py-1 rounded-full border text-sm transition-colors {selectedTag === null ? 'bg-accent text-bg font-medium border-accent' : 'bg-bg-50 text-text-50 border-bg-100 hover:text-white hover:border-text-100'}"
 			>
 				All
 			</button>
 			{#each uniqueTags as tag}
 				<button
 					on:click={() => toggleTag(tag)}
-					class="px-3 py-1 rounded-md text-sm transition-colors {selectedTag === tag ? 'bg-white text-bg font-medium' : 'bg-bg-50 text-text hover:bg-bg-100'}"
+					class="px-3 py-1 rounded-full border text-sm transition-colors {selectedTag === tag ? 'bg-accent text-bg font-medium border-accent' : 'bg-bg-50 text-text-50 border-bg-100 hover:text-white hover:border-text-100'}"
 				>
 					{tag}
 				</button>

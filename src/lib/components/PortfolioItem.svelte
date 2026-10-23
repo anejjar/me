@@ -1,30 +1,47 @@
 <script lang="ts">
-	export let project: {
-		title: string;
-		description: string;
-		url: string;
-		technologies?: string[];
-	};
+	import type { Project } from '$lib/config';
+
+	export let project: Project;
 </script>
 
-<article class="border border-bg-50 rounded-lg p-6 hover:border-white transition-colors group">
-	<a href={project.url} target="_blank" rel="noopener noreferrer" class="block">
-		<h3 class="text-xl font-semibold mb-2 group-hover:text-white transition-colors">
-			{project.title}
-			<span class="inline-block ml-2 text-text-100 group-hover:text-white transition-colors">→</span>
-		</h3>
-		<p class="text-text-50 mb-4">
-			{project.description}
-		</p>
-		{#if project.technologies && project.technologies.length > 0}
-			<div class="flex flex-wrap gap-2">
-				{#each project.technologies as tech}
-					<span class="px-2 py-1 bg-bg-50 rounded text-xs text-text-50">
-						{tech}
-					</span>
-				{/each}
-			</div>
-		{/if}
-	</a>
-</article>
+<article class="card card-hover overflow-hidden group h-full flex flex-col">
+	<div class="relative h-40 bg-gradient-to-br {project.gradient} border-b border-bg-100 overflow-hidden">
+		<div
+			class="absolute inset-0 opacity-[0.15] [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"
+			aria-hidden="true"
+		></div>
+		<span
+			class="absolute bottom-4 left-6 font-display text-5xl font-bold text-white/90 transition-transform duration-300 group-hover:-translate-y-1"
+			aria-hidden="true"
+		>
+			{project.title.charAt(0)}
+		</span>
+	</div>
 
+	<div class="p-6 flex flex-col flex-1">
+		<h3 class="text-xl font-semibold mb-2">{project.title}</h3>
+		<p class="text-text-50 leading-relaxed mb-5">{project.description}</p>
+
+		<div class="flex flex-wrap gap-2 mb-6">
+			{#each project.technologies as tech}
+				<span class="chip text-xs">{tech}</span>
+			{/each}
+		</div>
+
+		<div class="mt-auto flex items-center gap-5 text-sm font-medium">
+			<a
+				href={project.url}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-1 text-white hover:text-accent transition-colors"
+			>
+				Visit site <span aria-hidden="true">↗</span>
+			</a>
+			{#if project.caseStudy}
+				<a href={project.caseStudy} class="inline-flex items-center gap-1 text-text-50 hover:text-accent transition-colors">
+					Read case study <span aria-hidden="true">→</span>
+				</a>
+			{/if}
+		</div>
+	</div>
+</article>

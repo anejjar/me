@@ -5,37 +5,95 @@
 @layer base {
 	html {
 		scroll-behavior: smooth;
+		scroll-padding-top: 5rem;
 	}
-	
+
 	body {
-		@apply bg-bg text-text antialiased;
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+		@apply bg-bg text-text font-sans antialiased;
 	}
-	
+
+	h1,
+	h2,
+	h3 {
+		@apply font-display tracking-tight text-white;
+	}
+
+	::selection {
+		@apply bg-accent text-bg;
+	}
+
 	/* Focus styles for accessibility */
 	*:focus-visible {
-		@apply outline-2 outline-offset-2 outline-white;
+		@apply outline-2 outline-offset-2 outline-accent;
 	}
-	
+
 	/* Skip to content link */
 	.skip-to-content {
-		@apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-bg focus:rounded-md focus:font-medium;
+		@apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-accent focus:text-bg focus:rounded-md focus:font-medium;
 	}
 }
 
 @layer components {
 	.container-custom {
-		@apply max-w-4xl mx-auto px-6 md:px-8;
+		@apply max-w-6xl mx-auto px-4 sm:px-6 md:px-8;
 	}
-	
+
+	.section {
+		@apply py-20 md:py-28;
+	}
+
+	.eyebrow {
+		@apply inline-block text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-4;
+	}
+
+	.section-title {
+		@apply text-3xl md:text-4xl font-bold mb-4;
+	}
+
+	.section-subtitle {
+		@apply text-lg text-text-50 max-w-2xl leading-relaxed;
+	}
+
 	.link {
-		@apply text-text hover:text-white transition-colors duration-200 underline-offset-4 hover:underline;
+		@apply text-text hover:text-accent transition-colors duration-200 underline-offset-4 hover:underline;
 	}
-	
+
 	.btn {
-		@apply px-4 py-2 rounded-md transition-colors duration-200;
+		@apply inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg font-medium text-sm md:text-base transition-all duration-200 whitespace-nowrap;
 	}
-	
+
+	.btn-primary {
+		@apply btn bg-accent text-bg hover:bg-accent-hover shadow-[0_0_0_0_rgba(52,211,153,0)] hover:shadow-[0_8px_30px_-6px_rgba(52,211,153,0.45)] hover:-translate-y-0.5;
+	}
+
+	.btn-secondary {
+		@apply btn border border-bg-200 text-white hover:bg-bg-50 hover:border-text-100;
+	}
+
+	.btn-sm {
+		@apply px-4 py-2 text-sm;
+	}
+
+	.card {
+		@apply bg-bg-50 border border-bg-100 rounded-2xl transition-all duration-300;
+	}
+
+	.card-hover {
+		@apply hover:border-accent/40 hover:-translate-y-1 hover:shadow-[0_20px_50px_-20px_rgba(52,211,153,0.25)];
+	}
+
+	.chip {
+		@apply inline-flex items-center px-3 py-1 rounded-full border border-bg-100 bg-bg-50 text-sm text-text-50;
+	}
+
+	.input {
+		@apply w-full px-4 py-3 bg-bg border border-bg-100 rounded-lg text-text placeholder-text-100 transition-colors focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent;
+	}
+
+	.label {
+		@apply block text-sm font-medium text-text mb-2;
+	}
+
 	/* Page transitions */
 	@keyframes fadeIn {
 		from {
@@ -47,9 +105,31 @@
 			transform: translateY(0);
 		}
 	}
-	
+
 	.page-transition {
 		animation: fadeIn 0.3s ease-out;
+	}
+
+	/* Scroll reveal (see $lib/actions/reveal.ts) */
+	.reveal {
+		opacity: 0;
+		transform: translateY(16px);
+		transition:
+			opacity 0.6s ease-out,
+			transform 0.6s ease-out;
+	}
+
+	.reveal.revealed {
+		opacity: 1;
+		transform: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.reveal {
+			opacity: 1;
+			transform: none;
+			transition: none;
+		}
 	}
 }
 
@@ -76,4 +156,3 @@
 	clip: auto;
 	white-space: normal;
 }
-

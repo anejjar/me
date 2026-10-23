@@ -12,9 +12,9 @@
 </script>
 
 {#if relatedPosts.length > 0}
-	<section class="mt-12 pt-8 border-t border-bg-50">
+	<section class="mt-12 pt-8 border-t border-bg-100">
 		<h2 class="text-2xl font-semibold mb-6">Related Posts</h2>
-		<div class="space-y-6">
+		<div>
 			{#each relatedPosts as post}
 				<BlogPostCard {post} />
 			{/each}
