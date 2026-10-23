@@ -156,6 +156,27 @@ export const projects: Project[] = [
 		caseStudy: '/blog/organicaf',
 		technologies: ['E-commerce', 'WordPress', 'Payments'],
 		gradient: 'from-amber-500/30 via-orange-500/10 to-transparent'
+	},
+	{
+		title: 'Junk Startups',
+		description: 'Launch platform for indie makers: list a startup, get upvotes, feedback and early users, plus a free launch-readiness audit.',
+		url: 'https://junkstartups.com/',
+		technologies: ['Next.js', 'Community', 'SEO'],
+		gradient: 'from-rose-500/30 via-pink-500/10 to-transparent'
+	},
+	{
+		title: 'MyWebTools',
+		description: '50+ free developer utilities — JSON, encoding, colors, security and more — running entirely in the browser, no sign-up.',
+		url: 'https://mywebtools.dev/',
+		technologies: ['Developer tools', 'Client-side', 'Privacy'],
+		gradient: 'from-emerald-500/30 via-teal-500/10 to-transparent'
+	},
+	{
+		title: 'Be Puzzled',
+		description: 'Free online logic puzzle site with 40+ games — nonograms, sudoku variants, minesweeper and more — plus a daily puzzle.',
+		url: 'https://be-puzzled.com/',
+		technologies: ['Games', 'Web app', 'UX'],
+		gradient: 'from-indigo-500/30 via-blue-500/10 to-transparent'
 	}
 ];
 
